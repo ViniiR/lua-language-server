@@ -438,6 +438,15 @@ function vm.setNode(source, node, cover)
             log.error('Can not set nil node')
         end
     end
+    if vm.nodeCache[source] == nil then
+        if TEST then
+            error('Can not index nil node cache')
+        else
+            log.error('Can not index nil node cache')
+        end
+        ---@cast node vm.node
+        return node
+    end
     if cover then
         ---@cast node vm.node
         vm.nodeCache[source] = node
